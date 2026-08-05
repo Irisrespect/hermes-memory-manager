@@ -20,6 +20,20 @@ test_backend.py                     # 后端自测（临时目录模拟 Hermes h
 
 ## 安装
 
+### 一键安装（PowerShell，Windows）
+
+1. 解压发布包
+2. 在解压出的文件夹里打开 PowerShell，运行：
+
+```powershell
+.\install.ps1                # 默认 profile
+.\install.ps1 -AllProfiles   # 额外装到所有命名 profile（推荐）
+```
+
+脚本自动定位 Hermes 目录并完成全部复制；装完后**完全退出桌面 App 再重新打开**（后端进程缓存插件，仅 Reload 不够），左侧导航出现 "Memory"。
+
+### 手动安装
+
 ### 方式 A：bundled（推荐，所有 profile 可用）
 
 后端放进 Hermes 安装目录的插件区（所有 profile 共享、默认启用，免配置）：
