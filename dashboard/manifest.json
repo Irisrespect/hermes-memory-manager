@@ -1,0 +1,8 @@
+{
+  "name": "hermes-memory-manager",
+  "label": "Memory Manager",
+  "description": "查看/编辑各 Hermes profile 的 memory 文件（MEMORY.md / USER.md，按 § 条目逐条编辑）",
+  "icon": "Package",
+  "version": "0.1.0",
+  "api": "plugin_api.py"
+}
