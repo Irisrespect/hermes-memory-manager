@@ -13,28 +13,30 @@
 
 ## 安装
 
+二选一：**方式一（一键）** 或 **方式二（手动）**，选一种完成安装，然后统一做【启用】。
+
 ### 方式一：一键安装（推荐）
 
-在本机 Hermes 桌面端中打开此链接：
+在你的 Hermes 桌面端里打开这个链接（点击，或复制到浏览器地址栏回车）：
 
 ```
 hermes://plugin/install?repo=Irisrespect/hermes-memory-manager&enable=1
 ```
 
-> 在 README 的在线版本中，下面的按钮会直接可用：
->
 > [安装到 Hermes](hermes://plugin/install?repo=Irisrespect/hermes-memory-manager&enable=1)
 
-### 方式二：手动安装
+Hermes 会弹出安装确认框（显示插件名、来源、组件）——勾选 **agent 端** 和 **桌面端** 组件，确认安装。
+`enable=1` 会自动帮你打开**后端开关**，所以方式一只剩桌面端开关要手动开（见【启用】）。
 
-这个仓库本身就是标准插件包（`desktop/plugin.js` + `dashboard/plugin_api.py`），把它放到 Hermes 插件目录：
+### 方式二：手动复制
 
 ```bash
-# 以默认 HERMES_HOME 为例 (Windows: %LOCALAPPDATA%\hermes, 其他: ~/.hermes)
+# Windows (默认): %LOCALAPPDATA%\hermes\plugins\
+# macOS/Linux (默认): ~/.hermes/plugins/
 cp -r hermes-memory-manager "$HERMES_HOME/plugins/"
 ```
 
-即最终目录结构：
+最终目录结构：
 
 ```
 $HERMES_HOME/plugins/hermes-memory-manager/
@@ -46,24 +48,26 @@ $HERMES_HOME/plugins/hermes-memory-manager/
     └── dist/index.js      # dashboard 占位入口（tab 已隐藏，仅安全网）
 ```
 
-### ⚠️ 两个开关（安装后必须操作，官方安全边界）
+### ⚠️ 启用（安装后必须做，官方安全边界）
 
-| 开关 | 怎么开 | 管什么 |
-|---|---|---|
-| 开关一：桌面端 | 桌面端 **Settings → Plugins** → 找到 Memory Manager → 打开 | 管界面（侧边栏 Memory 按钮 + 编辑页面） |
-| 开关二：后端 | 终端跑一条命令（见下） | 管读写文件的后台功能（点"保存"靠它） |
+插件装完**默认不生效**——这是官方设计（插件可执行代码，必须你亲手激活），不是故障。共两个开关：
 
-**开关二 —— 推荐用官方命令，不用手改文件：**
+**开关 1 — 桌面端（必须手动开，方式一/方式二都一样）：**
+
+> Hermes 桌面端 → 右上角 **设置** → 左侧 **插件** → 找到 **Memory Manager** → 打开启用开关
+
+**开关 2 — 后端：**
+
+- 方式一：链接里的 `enable=1` **已经帮你开好了**，跳过
+- 方式二：跑一条官方命令（自动写白名单，不会弄坏配置）：
 
 ```bash
 hermes plugins enable hermes-memory-manager
 ```
 
-> 这是官方 CLI，自动把插件加进 `config.yaml` 的 `plugins.enabled` 白名单，**不会写坏配置**。跑完重启 Hermes（或 `hermes gateway restart`）生效。
->
-> 备选（不推荐手改，容易写错格式）：手动编辑 `$HERMES_HOME/config.yaml` 的 `plugins.enabled` 列表，加入 `hermes-memory-manager`。
+> 备选（不推荐，容易写错格式）：手动编辑 `$HERMES_HOME/config.yaml`，在 `plugins.enabled` 列表加入 `hermes-memory-manager`。
 
-> 两个开关默认都是 **off**（官方对插件统一的安全策略——有些插件能执行代码，所以必须你亲手激活两次），装完不启用则插件不工作。这是设计行为，不是故障。
+最后 **重启 Hermes**（或 `hermes gateway restart`），侧边栏出现「Memory」即可使用。
 
 ## 卸载
 
