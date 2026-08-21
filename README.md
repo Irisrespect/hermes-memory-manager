@@ -48,12 +48,22 @@ $HERMES_HOME/plugins/hermes-memory-manager/
 
 ### ⚠️ 两个开关（安装后必须操作，官方安全边界）
 
-| 开关 | 位置 | 说明 |
+| 开关 | 怎么开 | 管什么 |
 |---|---|---|
-| 桌面端激活 | 桌面端 **Settings → Plugins** | 找到 Memory Manager，打开启用开关 |
-| 后端激活 | `$HERMES_HOME/config.yaml` | `plugins.enabled` 列表加入 `hermes-memory-manager`，重启 gateway |
+| 开关一：桌面端 | 桌面端 **Settings → Plugins** → 找到 Memory Manager → 打开 | 管界面（侧边栏 Memory 按钮 + 编辑页面） |
+| 开关二：后端 | 终端跑一条命令（见下） | 管读写文件的后台功能（点"保存"靠它） |
 
-> 两个开关默认都是 **off**（官方对插件统一的安全策略），装完不启用则插件不工作——这是设计行为，不是故障。
+**开关二 —— 推荐用官方命令，不用手改文件：**
+
+```bash
+hermes plugins enable hermes-memory-manager
+```
+
+> 这是官方 CLI，自动把插件加进 `config.yaml` 的 `plugins.enabled` 白名单，**不会写坏配置**。跑完重启 Hermes（或 `hermes gateway restart`）生效。
+>
+> 备选（不推荐手改，容易写错格式）：手动编辑 `$HERMES_HOME/config.yaml` 的 `plugins.enabled` 列表，加入 `hermes-memory-manager`。
+
+> 两个开关默认都是 **off**（官方对插件统一的安全策略——有些插件能执行代码，所以必须你亲手激活两次），装完不启用则插件不工作。这是设计行为，不是故障。
 
 ## 卸载
 
