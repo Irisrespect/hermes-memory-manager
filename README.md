@@ -18,12 +18,12 @@
 在本机 Hermes 桌面端中打开此链接：
 
 ```
-hermes://plugin/install?repo=<你的GitHub用户名>/hermes-memory-manager&enable=1
+hermes://plugin/install?repo=Irisrespect/hermes-memory-manager&enable=1
 ```
 
 > 在 README 的在线版本中，下面的按钮会直接可用：
 >
-> [安装到 Hermes](hermes://plugin/install?repo=<你的GitHub用户名>/hermes-memory-manager&enable=1)
+> [安装到 Hermes](hermes://plugin/install?repo=Irisrespect/hermes-memory-manager&enable=1)
 
 ### 方式二：手动安装
 
