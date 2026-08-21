@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 本机工作区（桌面端插件副本，不是仓库的一部分）
+# 本仓库是分发源，你的桌面端实际加载的是 HERMES_HOME 下的副本
+local-install/
+
+# OS
+Thumbs.db
+.DS_Store
