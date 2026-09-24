@@ -86,7 +86,7 @@ function renderEntries(ed, { search, expanded, onToggle, onChange, onRemove }) {
 			jsx("p", {
 				key: "empty",
 				className:
-					"w-full self-center text-center text-xs text-muted-foreground",
+					"w-full self-center text-center text-xs text-(--ui-text-secondary)",
 				children:
 					ed.entries.length === 0
 						? "没有条目——点下方「新增条目」开始"
@@ -101,12 +101,12 @@ function renderEntries(ed, { search, expanded, onToggle, onChange, onRemove }) {
 			{
 				key: i,
 				className:
-					"flex w-44 shrink-0 flex-col rounded-md border border-(--ui-stroke-tertiary) border-l-2 bg-(--ui-bg-elevated) p-2",
+					"flex w-44 shrink-0 flex-col rounded-lg border border-(--ui-stroke-secondary) bg-(--ui-bg-secondary) p-2",
 				children: [
 					isOpen
 						? jsx(Textarea, {
 								className:
-									"min-h-32 w-full flex-1 resize-none rounded-[2.5px] bg-transparent text-xs leading-4",
+									"min-h-32 w-full flex-1 resize-none rounded-[2.5px] border border-(--ui-stroke-secondary) bg-(--ui-bg-primary) px-2 py-1.5 text-xs leading-4 outline-none placeholder:text-(--ui-text-quaternary) focus:border-(--ui-accent)",
 								value: text,
 								onChange: (e) => onChange(i, e.target.value),
 								placeholder: "条目内容…",
@@ -121,15 +121,15 @@ function renderEntries(ed, { search, expanded, onToggle, onChange, onRemove }) {
 								children: [
 									jsx("span", {
 										className:
-											"text-[0.62rem] leading-4 text-muted-foreground/60 tabular-nums",
+											"text-[0.62rem] leading-4 text-(--ui-text-tertiary) tabular-nums",
 										children: `#${i + 1}`,
 									}),
 									jsx("span", {
 										className: cn(
 											"line-clamp-6 flex-1 whitespace-pre-wrap break-words text-xs leading-4",
 											text
-												? "text-muted-foreground"
-												: "text-muted-foreground/40 italic",
+												? "text-(--ui-text-secondary)"
+												: "text-(--ui-text-quaternary) italic",
 										),
 										children: text || "（空条目）",
 									}),
@@ -137,12 +137,12 @@ function renderEntries(ed, { search, expanded, onToggle, onChange, onRemove }) {
 							}),
 					jsx("div", {
 						className:
-							"mt-1.5 flex items-center justify-between border-t border-border/40 pt-1",
+							"mt-1.5 flex items-center justify-between border-t border-(--ui-stroke-tertiary) pt-1",
 						children: [
 							jsx(Button, {
 								variant: "ghost",
 								size: "icon-xs",
-								className: "text-muted-foreground",
+								className: "text-(--ui-text-secondary)",
 								"aria-label": isOpen ? "折叠" : "展开编辑",
 								title: isOpen ? "折叠" : "展开编辑",
 								onClick: () => onToggle(i),
@@ -151,7 +151,7 @@ function renderEntries(ed, { search, expanded, onToggle, onChange, onRemove }) {
 							jsx(Button, {
 								variant: "ghost",
 								size: "icon-xs",
-								className: "text-muted-foreground hover:text-red-500",
+								className: "text-(--ui-text-secondary) hover:text-(--ui-danger)",
 								"aria-label": `删除条目 ${i + 1}`,
 								title: "删除条目",
 								onClick: () => onRemove(i),
@@ -386,7 +386,7 @@ function MemoryPage({ ctx }) {
 
 	return jsx("div", {
 		className:
-			"relative flex h-full flex-col overflow-hidden bg-(--ui-surface-background)",
+			"relative flex h-full flex-col overflow-hidden",
 		children: [
 			jsx("div", {
 				key: "head",
@@ -400,7 +400,7 @@ function MemoryPage({ ctx }) {
 								children: "Memory Manager",
 							}),
 							jsx("span", {
-								className: "min-w-0 truncate text-xs text-muted-foreground",
+								className: "min-w-0 truncate text-xs text-(--ui-text-secondary)",
 								children: info.data
 									? `${info.data.name} · ${info.data.memories_dir}`
 									: "…",
@@ -446,14 +446,14 @@ function MemoryPage({ ctx }) {
 						? jsx("p", {
 								key: "hint",
 								className:
-									"px-4 pt-3 text-xs text-amber-600 dark:text-amber-400",
+									"px-4 pt-3 text-xs text-(--ui-warning)",
 								children: "文件尚不存在——添加条目并保存将新建文件",
 							})
 						: null,
 					ed?.error
 						? jsx("p", {
 								key: "error",
-								className: "px-4 pt-3 text-xs text-red-500",
+								className: "px-4 pt-3 text-xs text-(--ui-danger)",
 								children: `错误：${ed.error}`,
 							})
 						: null,
@@ -462,7 +462,7 @@ function MemoryPage({ ctx }) {
 						className: "px-4 pt-3",
 						children: jsx("input", {
 							className:
-								"h-8 w-full rounded-[2.5px] border border-border/60 bg-transparent px-2 text-xs text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-ring",
+								"h-8 w-full rounded-md border border-(--ui-stroke-secondary) bg-(--ui-bg-input) px-2.5 text-xs text-(--ui-text-primary) outline-none placeholder:text-(--ui-text-tertiary) focus:border-(--ui-accent)",
 							placeholder: "搜索条目…",
 							value: search,
 							onChange: (e) => setSearch(e.target.value),
